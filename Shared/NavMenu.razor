@@ -1,0 +1,16 @@
+﻿<nav class="navbar is-transparent" style="background-color: #e7000000;">
+    <div class="is-flex is-flex-wrap-wrap-reverse"> 
+        <KPClima/>
+    </div>
+</nav>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

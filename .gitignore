@@ -1,0 +1,6 @@
+bin/
+.vscode/
+obj/
+NpmJS/node_modules/
+NpmJS/package-lock.json
+*.json

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.12" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Services-CSharp/BlazorGeoLoc/BlazorGeoLoc.csproj" />
+    <ProjectReference Include="../../Services-CSharp/OpenWheaterAPI/WheaterAPICall.csproj" />
+    <ProjectReference Include="../../Services-CSharp/ClockAbstract/ClockAbstract.csproj" />
+    <ProjectReference Include="../../Services-CSharp/ipLocation/ipLocation.csproj" />
+    <ProjectReference Include="../../Services-CSharp/IPBlazorWasm/IPBlazorWasm.csproj" />
+  </ItemGroup>
+
+   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm run css-build" WorkingDirectory="NpmJS" />
+  </Target> 
+
+
+</Project>

@@ -1,0 +1,77 @@
+@using System.Threading    
+@implements IDisposable
+
+@inject KPServices.ClockAbstract.IClockAbstract _ClockService
+@inject KPServices.BlazorGeoLoc.IGeoLService _geoLService
+@inject KPServices.OpenWeatherAPI.IWeatherService _weatherService
+@inject KPServices.IPAPI.IipService _ipService
+@inject KPServices.IPBlazorWasm.IIPBlazorWasm _ipWasm
+	
+@inject Blazored.LocalStorage.ILocalStorageService localStore
+
+
+<div class="is-flex is-flex-direction-column">
+    <p class="is-family-secondary has-text-white is-size-1">@theDay</p>
+    <p class="is-family-secondary has-text-white is-size-1">@theTime</p>
+</div>
+<div>
+    <p class="is-family-secondary has-text-white is-size-1">@placeName</p>
+</div>
+
+@code{
+
+    string placeName = "...";    
+    string timeZoneId = "";    
+    string theTime = string.Empty;    
+    string theDay = string.Empty;    
+
+    Timer? aTimer;
+    protected override void OnInitialized()
+    {
+     theDay = _ClockService.GetLocalTimeByID(timeZoneId).ToString("MM/dd");
+     aTimer = new Timer(Tick, null, 0, 1000);
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+     if (firstRender)
+     {
+        //Funcionando 
+        
+        string? localLat = null;
+        string? localLon = null;
+
+        if(await localStore.ContainKeyAsync("Lat") && await localStore.ContainKeyAsync("Lon"))            
+        {
+            localLat = await localStore.GetItemAsync<string>("Lat");
+            localLon = await localStore.GetItemAsync<string>("Lon");
+            await TrasObtnerActualizarCoords_TimeZone(localLat, localLon);
+           
+        }else{
+            //Solo las siguientes instrucciones se deben ejecutar si uno de los dos es true más no los dos a la vez
+            if (await TrasObtenerCoords_TimezoneGuardarlos() || await TrasObtenerIPCoord_TimezoneGuardarlos()){
+                localLat = await localStore.GetItemAsync<string>("Lat");
+                localLon = await localStore.GetItemAsync<string>("Lon");
+            }
+        }
+        if (localLat is not null && localLon is not null)
+        {
+            await ObtenerDataClimaDelCacheSinoGuardarla(localLat, localLon);
+
+        }
+        await ObtenerTimezone_CambiarFecha();
+      
+     }
+    }
+
+    private void Tick(object? _)
+    {
+        theTime = _ClockService.GetLocalTimeByID(timeZoneId).ToString("T").Replace(" ", "");
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        aTimer?.Dispose();
+    }
+}
