@@ -1,14 +1,42 @@
 ﻿@inherits LayoutComponentBase
+@inject KPServices.ClockAbstract.IClockAbstract _ClockService
 
 <PageTitle>site</PageTitle>
 
-<div class="section">
-    <NavMenu />
-</div>
+<div style="@($"background:{dayColor};")" class="is-flex  is-flex-direction-column is-flex-grow-1">
+    <div class="section">
+        <NavMenu />
+    </div>
 
-<div class="section">
-    @Body
+  <Background>
+      <div class="section">
+          @Body
+      </div>
+  </Background>
 </div>
 
 @* ****El footer para que sirva de footer no puede ir contenido en otro elemento***** *@
     <KPfooter/>
+
+@code{
+  string? dayColor;  
+
+  protected override void OnInitialized()
+  {
+    var t = _ClockService.GetLocalTime().Hour;
+    Console.WriteLine(t);
+    dayColor = t switch 
+    {
+      >= 0 and < 4 => "radial-gradient(circle, #020016, #00061f, #000)",
+      >= 4 and < 7 => "#011734",
+      >= 7 and < 15 => "#b0e2ff",
+      >= 15 and < 20 => "radial-gradient(circle, #faf722, #923511c9, #2f0000)",
+      //15 when t < 8 => "linear-gradient(to bottom left, #2f0000, #bc5026e0, #faf7228f)",
+      >= 20  => "radial-gradient(circle, #020016, #00061f, #000)",
+      
+      _ =>"#b0e2ff",
+    };
+    Console.WriteLine(dayColor);
+
+  }
+}

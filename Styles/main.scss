@@ -10,14 +10,24 @@
   src: url(../../fonts/earwig-factory.ttf);
 }
 
-html, body, #app {
-  background: black !important;
+@font-face {
+  font-family: "franklin-gothic";
+  src: url(../../fonts/FranklinGothic.ttf);
+}
+
+html, body{
+  // background: black !important;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-$family-primary: "P5hatty";
+#bg {
+  background-image: url('/Images/P5City_transparent.png');
+  background-size: cover;
+}
+
+$family-primary: "franlin-gothic";
 $family-secondary: "earwig-factory";
 $transparente: #fafafa00;
 
@@ -30,11 +40,21 @@ $transparente: #fafafa00;
 @import "../NpmJS/node_modules/bulma/sass/grid/columns.sass";
 @import "../NpmJS/node_modules/bulma/sass/components/navbar.sass";
 
+.current-weather-sprite {
+  background: url(images/weather_spritesheet4.png);
+  width: 75px;
+  height: 72px;
+  position: relative;
+  z-index: 1000;
+  grid-column: 6;
+  grid-row: 2;
+  margin-left: 6px;
+  margin-top: -2px;
+}
 .footerKP {
   @extend .footer;
-  background-color: $transparente;
+  background-color: black;
   padding: 3rem 1.5rem 3rem;
-  margin-top: auto;
 }
 
 .valid.modified:not([type=checkbox]) {

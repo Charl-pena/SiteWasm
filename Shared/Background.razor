@@ -1,0 +1,17 @@
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+
+
+
+
+    <div id="bg" class="is-flex is-flex is-flex-grow-1">
+        @ChildContent
+    </div>
+
+
+@code{
+
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
+
+}
