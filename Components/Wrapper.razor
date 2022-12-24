@@ -1,0 +1,8 @@
+@ChildContent
+
+@code{
+  [CascadingParameter] 
+  public string Image { get; set; } = "";
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
+}

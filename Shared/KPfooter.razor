@@ -2,10 +2,11 @@
 <footer class="footerKP is-flex is-flex-direction-column">
 	<div id = "footer" class="content has-text-centered has-text-white is-size-5 is-size-6-touch">
 				<p class="">Todas las ilustraciones aqui mostradas son de mi autoría (Carlos Peña). Cualquier uso indebido será denunciado.</p>
-				<p class="">La fotografía de fondo se a recuperado a través de Pexel. El autor es: @autorFoto</p>
+				<p class="">La fotografía de fondo se a recuperado a través de Pexel. Autor: @autorFoto, @sitioFoto</p>
 	</div>
 </footer>
 
 @code{
-	[Parameter] public string autorFoto { get; set; }
+	[Parameter] public string autorFoto { get; set; } = "";
+	[Parameter] public string sitioFoto { get; set; } = "";
 }

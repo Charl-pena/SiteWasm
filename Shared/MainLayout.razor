@@ -6,25 +6,18 @@
 
 <PageTitle>site</PageTitle>
 
-@* <div style="@($"background:{dayColor};")" class="is-flex  is-flex-direction-column is-flex-grow-1"> *@
-<div style="@($"background-image: url('{image}'); background-repeat: no-repeat; background-position: 110% -150%; background-size: 100% 86%;")" class="is-flex  is-flex-direction-column is-flex-grow-1">
-  <Background>
-    <div class="section py-2">
-        <NavMenu />
-    </div>
-
-      <div class="section is-flex is-flex-grow-1">
-          @Body
-      </div>
-  </Background>
-</div>
+<CascadingValue Value="Image">
+  @Body
+</CascadingValue>
 
 @* ****El footer para que sirva de footer no puede ir contenido en otro elemento***** *@
-    <KPfooter/>
+<KPfooter autorFoto="@autor" sitioFoto="@sitioFoto" />
 
 @code{
-  string image = "";
+  [Parameter] public string Image { get; set; } = "";
   string? dayColor;  
+  string autor= "";
+  string sitioFoto = "";
 
   protected override async Task OnInitializedAsync()
   {
@@ -41,16 +34,11 @@
     var p = await _pexelClient.SearchPhotosAsync(dayColor, "landscape", "small",  pageSize: 10);
     var i = new System.Random();
     
-    image = p.photos[i.Next(1,10)].source.landscape;
-    /* dayColor = t switch 
-    {
-      >= 0 and < 4 => "radial-gradient(circle, #020016, #00061f, #000)",
-      >= 4 and < 7 => "#011734",
-      >= 7 and < 15 => "#b0e2ff",
-      >= 15 and < 20 => "radial-gradient(circle, #faf722, #923511c9, #2f0000)",
-      >= 20  => "radial-gradient(circle, #020016, #00061f, #000)",
-      _ =>"#b0e2ff",
-    }; */
+    var img = p.photos[i.Next(1,10)];
+
+    Image = img.source.landscape;
+    sitioFoto =  img.photographerUrl;
+    autor =  img.photographer;
   }
 }
 
