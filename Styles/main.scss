@@ -23,7 +23,6 @@ html, body{
 }
 
 #bg {
-  background-image: url('/Images/P5City_transparent.png');
   background-size: cover;
 }
 
@@ -31,6 +30,7 @@ $family-primary: "franlin-gothic";
 $family-secondary: "earwig-factory";
 $transparente: #fafafa00;
 
+$black-ter: #1b1b1b63;
 
 @import "../NpmJS/node_modules/bulma/sass/utilities/_all.sass";
 @import "../NpmJS/node_modules/bulma/sass/base/_all.sass";
@@ -39,6 +39,7 @@ $transparente: #fafafa00;
 @import "../NpmJS/node_modules/bulma/sass/layout/footer.sass";
 @import "../NpmJS/node_modules/bulma/sass/grid/columns.sass";
 @import "../NpmJS/node_modules/bulma/sass/components/navbar.sass";
+@import "../NpmJS/node_modules/bulma/sass/elements/notification.sass";
 
 .current-weather-sprite {
   background: url(images/weather_spritesheet4.png);
@@ -54,7 +55,7 @@ $transparente: #fafafa00;
 .footerKP {
   @extend .footer;
   background-color: black;
-  padding: 3rem 1.5rem 3rem;
+  padding: 1rem 1.5rem 1rem;
 }
 
 .valid.modified:not([type=checkbox]) {

@@ -1,15 +1,11 @@
-@using System.Text.Json;
-@using System.Text.Json.Serialization;
 
-
-
-
-    <div id="bg" class="is-flex is-flex is-flex-grow-1">
+    <div style="@($"background-image: url('{image}');")" id="bg" class="is-flex is-flex is-flex-grow-1 is-flex-direction-column">
         @ChildContent
     </div>
 
 
 @code{
+  string image = "/Images/AtravesdeMiVentana.png";
 
   [Parameter]
   public RenderFragment? ChildContent { get; set; }

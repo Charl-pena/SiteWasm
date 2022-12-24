@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Http;
 using SiteWasm;
 using KPServices.IPBlazorWasm;
+using PexelsDotNetSDK.Api;
 
 // var apiWeather= builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("WeatherAPI"); 
 var apiWeather= "be0e71519c7cbf8fb043bd5c35d1f8c3"; 
@@ -23,6 +24,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
     });
     builder.Services.AddHttpClient<IPClient>();
     builder.Services.AddHttpClient<WeatherClient>();
+
+    builder.Services.AddScoped<PexelsClient>( p =>
+        ActivatorUtilities.CreateInstance<PexelsClient>(p, "563492ad6f91700001000001028127288cd44cb88a9e9a6c98e52f96") 
+    );
     builder.Services.AddScoped<IIPBlazorWasm,IPBlazorWasm>();
     builder.Services.AddScoped<IClockAbstract, ClockAbstract>();
     builder.Services.AddScoped<IGeoLService, GeoLService>();

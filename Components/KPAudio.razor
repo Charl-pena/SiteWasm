@@ -1,17 +1,17 @@
 @inject IJSRuntime _jsRuntime;
 
-<h1 class="is-size-1 has-text-white">Blazor Sound Demo</h1>
+<h1 class="is-size-2 has-text-white">Blazor Sound Demo</h1>
 
-<p class="is-size-2 has-text-white">To play the sound, click the button: 
+<p class="is-size-3 has-text-white">To play the sound, click the button: 
     <button class="is-size-5" id="soundButton" @onclick="PlaySound">Click me!</button>
 </p>
 
 
-<p class="is-size-2 has-text-white">To make the sound stop playing, click this button: 
+<p class="is-size-3 has-text-white">To make the sound stop playing, click this button: 
     <button class="is-size-5" id="stopButton" @onclick="PauseSound">Stop sound!</button>
 </p>
 
-<audio id="DebajoLaMascara" src="/audio/BeneaththeMask.flac" loop="loop" />
+@* <audio id="DebajoLaMascara" src="/audio/BeneaththeMask.flac" loop="loop" /> *@
 @* <audio id="DebajoLaMascaraIV" src="/audio/BtMiv.flac" /> *@
 
 

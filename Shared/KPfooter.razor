@@ -1,7 +1,11 @@
 
 <footer class="footerKP is-flex is-flex-direction-column">
-	<div id = "footer" class="content has-text-centered">
-				<p class="is-size-5 has-text-white"></p>
-				<p class="is-size-5 has-text-white">Persona 5 and all associated graphics are trademarks of ATLUS.</p>
+	<div id = "footer" class="content has-text-centered has-text-white is-size-5 is-size-6-touch">
+				<p class="">Todas las ilustraciones aqui mostradas son de mi autoría (Carlos Peña). Cualquier uso indebido será denunciado.</p>
+				<p class="">La fotografía de fondo se a recuperado a través de Pexel. El autor es: @autorFoto</p>
 	</div>
 </footer>
+
+@code{
+	[Parameter] public string autorFoto { get; set; }
+}

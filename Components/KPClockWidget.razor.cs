@@ -1,6 +1,6 @@
 
 namespace SiteWasm.Components{
-    public partial class KPClima{
+    public partial class KPClockWidget{
 
         private async Task TrasObtnerActualizarCoords_TimeZone(string localLat, string localLon){
             /* Las coordenadas estan guardadas correctamente en el LocalStorage */
@@ -39,26 +39,32 @@ namespace SiteWasm.Components{
         }
 
         private async Task ObtenerDataClimaDelCacheSinoGuardarla(string localLat, string localLon){
-        /* ***RECUPERANDO DATA DEL CLIMA EN EL CACHE. SI NO AGREGANDO UNA NUEVA ENTRADA*** */
-            // if (!_memoryCache.TryGetValue(SiteWasm.Data.CacheKeys.WEntry, out KPServices.OpenWeatherAPI.RootData cacheValue))
-            // {
-                
-                await _weatherService.AsyncInicializaConCoordenadas(localLat, localLon); 
-                
+            if(await localStore.ContainKeyAsync("PlaceName")) {
+                var pN = await localStore.GetItemAsync<string>("PlaceName");
+                placeName = pN;
+            }
+            else
+            {
+                try
+                {
+                    await _weatherService.AsyncInicializaConCoordenadas(localLat, localLon); 
+                    
+                }
+                catch (System.Exception)
+                {
+                    Console.WriteLine("Error al llamar la API.");
+                }
                 var d = _weatherService.GetRootData();
-                if (d is null)
-                    throw new NullReferenceException("ERROR: NO SE PUEDE ASIGNAR NULL AL CACHE. REVISA LA RESPUESTA DE LA WEATHER API.");
-                
-                // cacheValue = d;
-
-            //     var cacheEntryOptions = new MemoryCacheEntryOptions()
-            //         .SetSlidingExpiration(TimeSpan.FromMinutes(30));
-
-            //     _memoryCache.Set(SiteWasm.Data.CacheKeys.WEntry, cacheValue, cacheEntryOptions);
-            // }
-            /* ***SE GUARDA EL NOMBRE DEL LUGAR EXTRAIDO DE LA MEMORIA CACHE*** */
-            // placeName = cacheValue.name;
-            placeName = d.name;
+                if (d is null){
+                    Console.WriteLine("ERROR: NO SE PUEDE ASIGNAR NULL AL CACHE. REVISA LA RESPUESTA DE LA WEATHER API.");
+                    placeName = "Error en la conexión...";
+                }
+                else
+                {
+                    await localStore.SetItemAsync<string>("PlaceName", d.name);
+                    placeName = d.name;
+                }                
+            }
         }
         private async Task ObtenerTimezone_CambiarFecha(){
             /* ***SE ACTUALIZA EL TIEMPO EN BASE A LA ZONA HORARIA ENCONTRADA POR LA COORDENADAS*** */

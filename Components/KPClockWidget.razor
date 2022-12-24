@@ -10,13 +10,17 @@
 @inject Blazored.LocalStorage.ILocalStorageService localStore
 
 
-<div class="is-flex is-flex-direction-column">
-    <p class="is-family-secondary has-text-white is-size-1">@theDay</p>
-    <p class="is-family-secondary has-text-white is-size-1">@theTime</p>
+<div class="is-flex is-flex-wrap-wrap-reverse is-justify-content-center">
+    <div class="notification has-background-black-ter is-flex is-flex-direction-column has-text-white is-size-2 is-size-4-touch">
+        <p class="is-family-primary ">@placeName</p>
+        <div class="is-flex is-justify-content-space-between">
+                <p class="is-align-self-center">@theDay</p>
+                <p class="is-family-secondary ">@theTime</p>
+        </div>
+    </div>
 </div>
-<div>
-    <p class="is-family-secondary has-text-white is-size-1">@placeName</p>
-</div>
+
+
 
 @code{
 
