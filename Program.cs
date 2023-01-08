@@ -1,6 +1,6 @@
 using Blazored.LocalStorage;
 using KPServices.BlazorGeoLoc;
-using KPServices.IPAPI;
+using KPServices.IPLocation;
 using KPServices.OpenWeatherAPI;
 using KPServices.ClockAbstract;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,10 +19,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
     builder.Services.AddBlazoredLocalStorage();
 
-    builder.Services.AddHttpClient("IP",(options) => {
+    builder.Services.AddHttpClient("GetIP",(options) => {
       options.BaseAddress = new Uri("https://jsonip.com");
     });
-    builder.Services.AddHttpClient<IPClient>();
+    builder.Services.AddHttpClient<KPServices.IPLocation.GeoipifyClient>();
     builder.Services.AddHttpClient<WeatherClient>();
 
     builder.Services.AddScoped<PexelsClient>( p =>
@@ -31,7 +31,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
     builder.Services.AddScoped<IIPBlazorWasm,IPBlazorWasm>();
     builder.Services.AddScoped<IClockAbstract, ClockAbstract>();
     builder.Services.AddScoped<IGeoLService, GeoLService>();
-    builder.Services.AddScoped<IipService, ipService>();
+    builder.Services.AddScoped<IIPLocationService, GeoipifyService>();
     if(apiWeather == null)
         throw new ArgumentNullException("ERROR: EL API-WEATHER TOKEN NO HA SIDO ENCONTRADO.");
     else

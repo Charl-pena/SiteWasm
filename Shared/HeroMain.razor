@@ -8,7 +8,7 @@
       <div class="columns is-flex-grow-1">
         <div class="column is-1"> </div>
         <div class="column has-background-black-ter has-text-white">
-          <KPAudio/>
+          @ChildContent
         </div>
         <div class="column is-1"></div>
       </div>
@@ -18,6 +18,9 @@
 
 
 @code{
-[CascadingParameter] 
+  [CascadingParameter] 
   public string Image { get; set; } = "";
+
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
 }

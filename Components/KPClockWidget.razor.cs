@@ -24,9 +24,9 @@ namespace SiteWasm.Components{
             var x = await _ipWasm.GetUserIPAsync();
             Console.WriteLine(x?.IP);
             if( x?.IP is not null)
-                await _ipService.SolicitarDatosPorIP(x.IP);
+                await _ipLocationService.SolicitarDatosPorIP(x.IP);
             
-            var y = _ipService.GetCoords();
+            var y = _ipLocationService.GetCoords();
             if(y.HasValue)
             {
                 await GuardarCoords_Timezone(y.Value.Item1, y.Value.Item2);

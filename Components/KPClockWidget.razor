@@ -4,14 +4,14 @@
 @inject KPServices.ClockAbstract.IClockAbstract _ClockService
 @inject KPServices.BlazorGeoLoc.IGeoLService _geoLService
 @inject KPServices.OpenWeatherAPI.IWeatherService _weatherService
-@inject KPServices.IPAPI.IipService _ipService
+@inject KPServices.IPLocation.IIPLocationService _ipLocationService
 @inject KPServices.IPBlazorWasm.IIPBlazorWasm _ipWasm
 	
 @inject Blazored.LocalStorage.ILocalStorageService localStore
 
 
 <div class="is-flex is-flex-wrap-wrap-reverse is-justify-content-center">
-    <div class="notification has-background-black-ter is-flex is-flex-direction-column has-text-white is-size-2 is-size-4-touch">
+    <div class="notification has-background-grey-light is-flex is-flex-direction-column has-text-white is-size-2 is-size-4-touch">
         <p class="is-family-primary ">@placeName</p>
         <div class="is-flex is-justify-content-space-between">
                 <p class="is-align-self-center">@theDay</p>
