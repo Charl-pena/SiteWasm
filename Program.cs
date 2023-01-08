@@ -31,7 +31,9 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
     builder.Services.AddScoped<IIPBlazorWasm,IPBlazorWasm>();
     builder.Services.AddScoped<IClockAbstract, ClockAbstract>();
     builder.Services.AddScoped<IGeoLService, GeoLService>();
-    builder.Services.AddScoped<IIPLocationService, GeoipifyService>();
+    builder.Services.AddScoped<IIPLocationService>(p => 
+        ActivatorUtilities.CreateInstance<GeoipifyService>(p, "at_aNQ3Dd3dmIBcAm3mAjEORLnn2iETg")
+    );
     if(apiWeather == null)
         throw new ArgumentNullException("ERROR: EL API-WEATHER TOKEN NO HA SIDO ENCONTRADO.");
     else
