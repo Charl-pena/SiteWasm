@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gravam.KPServices.BlazorGeoLoc" Version="3.0.0" />
+    <PackageReference Include="Gravam.KPServices.ClockAbstract" Version="1.0.0" />
+    <PackageReference Include="Gravam.KPServices.IPBlazorWasm" Version="1.0.0" />
+    <PackageReference Include="Gravam.KPServices.IPLocation" Version="1.0.1" />
+    <PackageReference Include="Gravam.KPServices.OpenWheaterAPI" Version="1.0.0" />
+    
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.12" PrivateAssets="all" />
@@ -16,16 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../Services-CSharp/BlazorGeoLoc/BlazorGeoLoc.csproj" />
-    <ProjectReference Include="../../Services-CSharp/OpenWheaterAPI/WheaterAPICall.csproj" />
-    <ProjectReference Include="../../Services-CSharp/ClockAbstract/ClockAbstract.csproj" />
-    <ProjectReference Include="../../Services-CSharp/IPLocation/IPLocation.csproj" />
-    <ProjectReference Include="../../Services-CSharp/IPBlazorWasm/IPBlazorWasm.csproj" />
+    <!-- <ProjectReference Include="..\..\Services-CSharp\BlazorGeoLoc\BlazorGeoLoc.csproj" /> -->
   </ItemGroup>
 
    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="npm run css-build" WorkingDirectory="NpmJS" />
   </Target> 
-
 
 </Project>
