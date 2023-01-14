@@ -1,0 +1,20 @@
+<div class="Wrapper">
+  <main class="main">
+    <div class="error">error</div>
+    <img src=@Image />
+    <h2>Nothing in this address</h2>
+    <h6>
+      Nada que mostrar en
+      <br/>
+      está dirección.
+    </h6>
+    <a href="/" class="button">Regresar</a>
+  </main>
+</div>  
+
+  @code {
+    [Parameter]
+    public string Image {get; set;} =
+    "https://cdn.freebiesupply.com/logos/large/2x/linux-tux-1-logo-png-transparent.png";
+
+  }
