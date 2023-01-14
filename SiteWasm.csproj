@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
-    <GHPagesBase>"/"</GHPagesBase>
+    <UseBlazorWebAsembly>true</UseBlazorWebAssembly>
+    <GHPagesBase>/</GHPagesBase>
   </PropertyGroup>
 
   <ItemGroup>
