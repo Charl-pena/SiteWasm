@@ -26,7 +26,7 @@ jobs:
       run: dotnet workload install wasm-tools
     # Install necessary npm package
     - name: Install npm pacakage dependencies
-      run: npm -i
+      run: npm install
       working-directory: NpmJS 
     # Publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
