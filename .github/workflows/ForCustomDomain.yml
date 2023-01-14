@@ -1,4 +1,5 @@
-name: SiteWasm
+
+name: SiteWasm CustomDomain
 
 # Run workflow on every push to the master branch
 on:
@@ -30,13 +31,10 @@ jobs:
       working-directory: NpmJS 
     # Publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
-      run: dotnet publish SiteWasm.csproj -c:Release -p:GHPages=true -o dist/SiteWasm --nologo
+      run: dotnet publish SiteWasm.csproj -c:Release -o dist/SiteWasm --nologo
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
+        BRANCH: gh-pages-alternative
         FOLDER: dist/SiteWasm/wwwroot      
-      
-      
-      
